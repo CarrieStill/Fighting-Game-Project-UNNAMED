@@ -1,42 +1,89 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0tllue3c1yya"]
+[gd_scene load_steps=9 format=3 uid="uid://b0tllue3c1yya"]
 
 [ext_resource type="Texture2D" uid="uid://b0jykydbxxrv8" path="res://icon.svg" id="1_epypp"]
 [ext_resource type="Script" uid="uid://kps2ltx7fysm" path="res://character_body_2d.gd" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://divyxcj2llmm3" path="res://gayass.png" id="2_0e48y"]
+[ext_resource type="Texture2D" uid="uid://c8oaghdjvcnr2" path="res://faveti.png" id="3_epypp"]
+[ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://camera_2d.gd" id="4_0hol4"]
+[ext_resource type="Script" uid="uid://c1ldymxcbhsmf" path="res://rich_text_label.gd" id="4_q6r6c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0e48y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(628, 89)
+size = Vector2(754, 127)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(61, 69)
+size = Vector2(48, 66.5)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(887, -85)
 physics_material_override = SubResource("PhysicsMaterial_0e48y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(138, 44)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(1, 1.5)
 shape = SubResource("RectangleShape2D_epypp")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(137, 45)
-scale = Vector2(4.90625, 0.703125)
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+position = Vector2(1.00003, 0)
+scale = Vector2(5.92969, 1.00781)
+texture = ExtResource("1_epypp")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(121, 56)
+physics_material_override = SubResource("PhysicsMaterial_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
+position = Vector2(1.00003, 0)
+scale = Vector2(5.92969, 1.00781)
+texture = ExtResource("1_epypp")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(-673, 23)
+physics_material_override = SubResource("PhysicsMaterial_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
+position = Vector2(1.00003, 0)
+scale = Vector2(5.92969, 1.00781)
 texture = ExtResource("1_epypp")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(-2, -45)
+position = Vector2(12, -88)
+scale = Vector2(1.95473, 2.2029)
 script = ExtResource("1_wtcfe")
 
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(3.06947, -31.7763)
+script = ExtResource("4_0hol4")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CharacterBody2D/Camera2D"]
+offset_left = -268.579
+offset_top = -129.829
+offset_right = -228.579
+offset_bottom = -89.8287
+script = ExtResource("4_q6r6c")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(2, -1)
+position = Vector2(3, 0.25)
 shape = SubResource("RectangleShape2D_0hol4")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(1, -1)
-scale = Vector2(0.0857777, 0.0926431)
-texture = ExtResource("2_0e48y")
+position = Vector2(2, 9)
+scale = Vector2(0.327083, 0.366667)
+texture = ExtResource("3_epypp")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="JumpBufferTimer" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.2
+one_shot = true
