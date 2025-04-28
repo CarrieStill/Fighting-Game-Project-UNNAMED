@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=3 uid="uid://b0tllue3c1yya"]
 
-[ext_resource type="Texture2D" uid="uid://b0jykydbxxrv8" path="res://icon.svg" id="1_epypp"]
 [ext_resource type="Script" uid="uid://kps2ltx7fysm" path="res://character_body_2d.gd" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://c8oaghdjvcnr2" path="res://faveti.png" id="3_epypp"]
 [ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://camera_2d.gd" id="4_0hol4"]
@@ -9,51 +8,42 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0e48y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(754, 127)
+size = Vector2(2126, 218.5)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0hol4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(48, 66.5)
 
 [node name="Node2D" type="Node2D"]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(887, -85)
-physics_material_override = SubResource("PhysicsMaterial_0e48y")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(1, 1.5)
-shape = SubResource("RectangleShape2D_epypp")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(1.00003, 0)
-scale = Vector2(5.92969, 1.00781)
-texture = ExtResource("1_epypp")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(121, 56)
-physics_material_override = SubResource("PhysicsMaterial_0e48y")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(1, 1.5)
-shape = SubResource("RectangleShape2D_epypp")
-
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D3"]
-position = Vector2(1.00003, 0)
-scale = Vector2(5.92969, 1.00781)
-texture = ExtResource("1_epypp")
-
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(-673, 23)
+position = Vector2(1681, -66)
 physics_material_override = SubResource("PhysicsMaterial_0e48y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(1, 1.5)
+position = Vector2(-1179, 209.75)
 shape = SubResource("RectangleShape2D_epypp")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
-position = Vector2(1.00003, 0)
-scale = Vector2(5.92969, 1.00781)
-texture = ExtResource("1_epypp")
+modulate = Color(1.64848e-06, 0.404267, 0.169, 1)
+position = Vector2(-1166, 220.5)
+scale = Vector2(2156, 233)
+texture = SubResource("CanvasTexture_0hol4")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+position = Vector2(4054, -146)
+physics_material_override = SubResource("PhysicsMaterial_0e48y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
+position = Vector2(-1179, 209.75)
+shape = SubResource("RectangleShape2D_epypp")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
+modulate = Color(1.64848e-06, 0.404267, 0.169, 1)
+position = Vector2(-1166, 220.5)
+scale = Vector2(2156, 233)
+texture = SubResource("CanvasTexture_0hol4")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 position = Vector2(12, -88)
