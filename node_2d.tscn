@@ -1,16 +1,20 @@
-[gd_scene load_steps=9 format=3 uid="uid://b0tllue3c1yya"]
+[gd_scene load_steps=11 format=3 uid="uid://b0tllue3c1yya"]
 
 [ext_resource type="Script" uid="uid://kps2ltx7fysm" path="res://character_body_2d.gd" id="1_wtcfe"]
 [ext_resource type="Texture2D" uid="uid://c8oaghdjvcnr2" path="res://faveti.png" id="3_epypp"]
+[ext_resource type="Texture2D" uid="uid://bobv3sk66m1s" path="res://_token-editor_token-uploads_undead_skeleton_2024-03-06T00 02 02.752Z.png" id="3_q6r6c"]
 [ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://camera_2d.gd" id="4_0hol4"]
 [ext_resource type="Script" uid="uid://c1ldymxcbhsmf" path="res://rich_text_label.gd" id="4_q6r6c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0e48y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
-size = Vector2(2126, 218.5)
-
 [sub_resource type="CanvasTexture" id="CanvasTexture_0hol4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6r6c"]
+size = Vector2(2421, 263)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
+size = Vector2(476, 532.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(48, 66.5)
@@ -18,62 +22,83 @@ size = Vector2(48, 66.5)
 [node name="Node2D" type="Node2D"]
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(1681, -66)
+position = Vector2(1672, -66)
 physics_material_override = SubResource("PhysicsMaterial_0e48y")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(-1179, 209.75)
-shape = SubResource("RectangleShape2D_epypp")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D4"]
 modulate = Color(1.64848e-06, 0.404267, 0.169, 1)
-position = Vector2(-1166, 220.5)
-scale = Vector2(2156, 233)
+position = Vector2(-615, 237.5)
+scale = Vector2(3290, 267)
 texture = SubResource("CanvasTexture_0hol4")
 
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(4054, -146)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(-589.5, 240)
+shape = SubResource("RectangleShape2D_q6r6c")
+
+[node name="Walls" type="StaticBody2D" parent="."]
+position = Vector2(1618, -823)
 physics_material_override = SubResource("PhysicsMaterial_0e48y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(-1179, 209.75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls"]
+position = Vector2(-1945, 596)
 shape = SubResource("RectangleShape2D_epypp")
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D5"]
-modulate = Color(1.64848e-06, 0.404267, 0.169, 1)
-position = Vector2(-1166, 220.5)
-scale = Vector2(2156, 233)
-texture = SubResource("CanvasTexture_0hol4")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
+position = Vector2(858, 602)
+shape = SubResource("RectangleShape2D_epypp")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-position = Vector2(12, -88)
-scale = Vector2(1.95473, 2.2029)
+[node name="Player1" type="CharacterBody2D" parent="."]
+position = Vector2(18, -116)
+scale = Vector2(4.31672, 4.35607)
 script = ExtResource("1_wtcfe")
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(3.06947, -31.7763)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
+position = Vector2(3, 0.25)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player1"]
+position = Vector2(1.38995, 12.1669)
+scale = Vector2(0.327083, 0.366667)
+texture = ExtResource("3_epypp")
+
+[node name="JumpBufferTimer" type="Timer" parent="Player1"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Player1"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Player2" type="CharacterBody2D" parent="."]
+position = Vector2(588, -104)
+scale = Vector2(4.31672, 4.35607)
+script = ExtResource("1_wtcfe")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
+position = Vector2(3, 0.25)
+shape = SubResource("RectangleShape2D_0hol4")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player2"]
+position = Vector2(2.08492, 2.29565)
+scale = Vector2(0.277024, 0.32426)
+texture = ExtResource("3_q6r6c")
+
+[node name="JumpBufferTimer" type="Timer" parent="Player2"]
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="Player2"]
+wait_time = 0.2
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(419, -160)
+scale = Vector2(1.95473, 2.2029)
 script = ExtResource("4_0hol4")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CharacterBody2D/Camera2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Camera2D"]
 offset_left = -268.579
 offset_top = -129.829
 offset_right = -228.579
 offset_bottom = -89.8287
 script = ExtResource("4_q6r6c")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
-position = Vector2(3, 0.25)
-shape = SubResource("RectangleShape2D_0hol4")
-
-[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-position = Vector2(2, 9)
-scale = Vector2(0.327083, 0.366667)
-texture = ExtResource("3_epypp")
-
-[node name="JumpBufferTimer" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.2
-one_shot = true
-
-[node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.2
-one_shot = true

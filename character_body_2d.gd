@@ -5,7 +5,7 @@ extends CharacterBody2D
 @export var gravity: int = speed * 5
 @export var down_gravity_factor: float = 3
 @export var jump_speed: int = -speed * 2
-
+@export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1"]
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var coyote_timer: Timer = $CoyoteTimer
@@ -21,10 +21,13 @@ func _physics_process(delta):
 	
 	
 func get_input():
-	if (Input.is_action_just_pressed("up")):
+	if(name == "Player2"):
+		playerInputs = ["upP2", "downP2", "leftP2", "rightP2"]
+		
+	if (Input.is_action_just_pressed(playerInputs[0])):
 		jump_buffer_timer.start()
 
-	var direction = Input.get_axis("left", "right")
+	var direction = Input.get_axis(playerInputs[2], playerInputs[3])
 	if direction == 0:
 		velocity.x = move_toward(velocity.x, 0, acceleration)
 	else:
