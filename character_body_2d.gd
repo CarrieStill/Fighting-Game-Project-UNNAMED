@@ -1,10 +1,10 @@
 extends CharacterBody2D
 
 @export var speed: int = 400
-@export var acceleration: int = 35
+@export var acceleration: int = 70
 @export var gravity: int = speed * 5
 @export var down_gravity_factor: float = 3
-@export var jump_speed: int = -speed * 2
+@export var jump_speed: int = -speed * 3
 @export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1"]
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
@@ -12,6 +12,7 @@ extends CharacterBody2D
 
 enum State{IDLE, WALK, JUMP, DOWN}
 var current_state: State = State.IDLE
+var jumpDirection = 0
 
 func _physics_process(delta):
 	get_input()
@@ -25,10 +26,21 @@ func get_input():
 		playerInputs = ["upP2", "downP2", "leftP2", "rightP2"]
 		
 	if (Input.is_action_just_pressed(playerInputs[0])):
+		
+		if(Input.is_action_pressed(playerInputs[2])):
+			jumpDirection = -1
+		elif(Input.is_action_pressed(playerInputs[3])):
+			jumpDirection = 1
+		else:
+			jumpDirection = 0
 		jump_buffer_timer.start()
 
 	var direction = Input.get_axis(playerInputs[2], playerInputs[3])
-	if direction == 0:
+	
+	if !is_on_floor():
+		#do nothing
+		velocity.x
+	elif direction == 0:
 		velocity.x = move_toward(velocity.x, 0, acceleration)
 	else:
 		velocity.x = move_toward(velocity.x, speed*direction, acceleration)
@@ -36,6 +48,7 @@ func get_input():
 func update_movement(delta: float) -> void:
 	if (is_on_floor() || coyote_timer.time_left >0) && jump_buffer_timer.time_left > 0:
 		velocity.y = jump_speed
+		velocity.x = speed * jumpDirection
 		current_state = State.JUMP
 		jump_buffer_timer.stop()
 		coyote_timer.stop()
