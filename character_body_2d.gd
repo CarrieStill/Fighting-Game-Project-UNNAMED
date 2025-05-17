@@ -7,15 +7,20 @@ extends CharacterBody2D
 @export var jump_speed: int = -speed * 3
 @export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1"]
 
-@onready var jump_buffer_timer: Timer = $JumpBufferTimer
-@onready var coyote_timer: Timer = $CoyoteTimer
 
-enum State{IDLE, WALK, JUMP, DOWN}
+@onready var jump_buffer_timer: Timer = $JumpBufferTimer
+@onready var testguyAnimations = $AnimatedSprite2D
+@onready var Player1: CharacterBody2D = $%Player1
+@onready var Player2: CharacterBody2D = $%Player2
+enum State{IDLE, WALK, JUMP, DOWN, ATTACK, BLOCK, RECOVERY, STARTUP, LEFT, RIGHT}
+
 var current_state: State = State.IDLE
+var facing_state: State = State.RIGHT
 var jumpDirection = 0
 
 func _physics_process(delta):
 	get_input()
+	update_direction()
 	update_movement(delta)
 	update_states()
 	move_and_slide()
@@ -36,7 +41,7 @@ func get_input():
 		jump_buffer_timer.start()
 
 	var direction = Input.get_axis(playerInputs[2], playerInputs[3])
-	
+	#Horizontal Movement Control
 	if !is_on_floor():
 		#do nothing
 		velocity.x
@@ -46,12 +51,11 @@ func get_input():
 		velocity.x = move_toward(velocity.x, speed*direction, acceleration)
 	
 func update_movement(delta: float) -> void:
-	if (is_on_floor() || coyote_timer.time_left >0) && jump_buffer_timer.time_left > 0:
+	if (is_on_floor()) && jump_buffer_timer.time_left > 0:
 		velocity.y = jump_speed
 		velocity.x = speed * jumpDirection
 		current_state = State.JUMP
 		jump_buffer_timer.stop()
-		coyote_timer.stop()
 		
 	if current_state == State.JUMP:
 		velocity.y += gravity * delta
@@ -68,7 +72,6 @@ func update_states() -> void:
 				current_state = State.IDLE
 				if not is_on_floor() && velocity.y > 0:
 					current_state = State.DOWN
-					coyote_timer.start()
 		State.JUMP when velocity.y > 0:
 			current_state = State.DOWN
 		
@@ -77,3 +80,17 @@ func update_states() -> void:
 				current_state = State.IDLE
 			else:
 				current_state = State.WALK
+
+#Update the direction that players are facing, keeps them facing each other.
+func update_direction() -> void:
+	var playerDistance = Player1.position.x - Player2.position.x
+	var directionP1 = 0
+	var directionP2 = 1
+	if playerDistance > 0:
+		directionP1 = 1
+		directionP2 = 0
+	
+	if(name == "Player1"):
+		testguyAnimations.flip_h = directionP1
+	elif(name == "Player2"):
+		testguyAnimations.flip_h = directionP2

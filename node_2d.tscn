@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://b0tllue3c1yya"]
+[gd_scene load_steps=17 format=3 uid="uid://b0tllue3c1yya"]
 
 [ext_resource type="Script" uid="uid://kps2ltx7fysm" path="res://character_body_2d.gd" id="1_wtcfe"]
-[ext_resource type="Texture2D" uid="uid://c8oaghdjvcnr2" path="res://faveti.png" id="3_epypp"]
-[ext_resource type="Texture2D" uid="uid://bobv3sk66m1s" path="res://_token-editor_token-uploads_undead_skeleton_2024-03-06T00 02 02.752Z.png" id="3_q6r6c"]
+[ext_resource type="Texture2D" uid="uid://iej853rchl31" path="res://testguy-Sheet.png" id="2_d21ai"]
 [ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://camera_2d.gd" id="4_0hol4"]
 [ext_resource type="Script" uid="uid://dlihya5pjrmcq" path="res://camera_buddy.gd" id="4_kdubu"]
 [ext_resource type="Script" uid="uid://c1ldymxcbhsmf" path="res://rich_text_label.gd" id="4_q6r6c"]
@@ -20,6 +19,38 @@ size = Vector2(476, 1127.06)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
 size = Vector2(48, 66.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
+atlas = ExtResource("2_d21ai")
+region = Rect2(0, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4d7sh"]
+atlas = ExtResource("2_d21ai")
+region = Rect2(80, 0, 80, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir8iy"]
+atlas = ExtResource("2_d21ai")
+region = Rect2(160, 0, 80, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hqns4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rj586")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7sh")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_ir8iy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4d7sh")
+}],
+"loop": true,
+"name": &"IDLE",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(844, 63.5)
@@ -62,18 +93,16 @@ script = ExtResource("1_wtcfe")
 position = Vector2(3, 0.25)
 shape = SubResource("RectangleShape2D_0hol4")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player1"]
-position = Vector2(1.38995, 12.1669)
-scale = Vector2(0.327083, 0.366667)
-texture = ExtResource("3_epypp")
-
 [node name="JumpBufferTimer" type="Timer" parent="Player1"]
 wait_time = 0.2
 one_shot = true
 
-[node name="CoyoteTimer" type="Timer" parent="Player1"]
-wait_time = 0.2
-one_shot = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1"]
+position = Vector2(3.01155, -5.05043)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_hqns4")
+animation = &"IDLE"
+autoplay = "IDLE"
 
 [node name="Player2" type="CharacterBody2D" parent="."]
 unique_name_in_owner = true
@@ -85,18 +114,16 @@ script = ExtResource("1_wtcfe")
 position = Vector2(3, 0.25)
 shape = SubResource("RectangleShape2D_0hol4")
 
-[node name="Sprite2D" type="Sprite2D" parent="Player2"]
-position = Vector2(2.08492, 2.29565)
-scale = Vector2(0.277024, 0.32426)
-texture = ExtResource("3_q6r6c")
-
 [node name="JumpBufferTimer" type="Timer" parent="Player2"]
 wait_time = 0.2
 one_shot = true
 
-[node name="CoyoteTimer" type="Timer" parent="Player2"]
-wait_time = 0.2
-one_shot = true
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2"]
+position = Vector2(3.01155, -5.05043)
+scale = Vector2(0.6, 0.6)
+sprite_frames = SubResource("SpriteFrames_hqns4")
+animation = &"IDLE"
+autoplay = "IDLE"
 
 [node name="Camera Buddy" type="CharacterBody2D" parent="."]
 position = Vector2(389, -292)
