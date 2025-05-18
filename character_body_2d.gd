@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var down_gravity_factor: float = 3
 @export var jump_speed: int = -speed * 3
 @export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1"]
+@export var health: int = 1000
 
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
@@ -38,6 +39,7 @@ func get_input():
 			jumpDirection = 1
 		else:
 			jumpDirection = 0
+		health -= 100
 		jump_buffer_timer.start()
 
 	var direction = Input.get_axis(playerInputs[2], playerInputs[3])
