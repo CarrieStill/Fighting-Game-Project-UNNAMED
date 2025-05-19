@@ -14,6 +14,7 @@ func _ready() -> void:
 	HealthBarP2.max_value = Player2.health
 	
 	
+	
 func _physics_process(delta: float) -> void:
 	Player1
 	

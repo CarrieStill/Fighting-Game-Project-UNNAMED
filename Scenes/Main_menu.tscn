@@ -1,37 +1,40 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbqe2qw8kq4yr"]
+[gd_scene load_steps=14 format=3 uid="uid://bbqe2qw8kq4yr"]
 
-[ext_resource type="Texture2D" uid="uid://pdha0ubftcm0" path="res://Title.png" id="1_b07fi"]
+[ext_resource type="Script" uid="uid://c820axogj4y3o" path="res://Scripts/main_menu.gd" id="1_787fc"]
+[ext_resource type="Texture2D" uid="uid://pdha0ubftcm0" path="res://Title.png" id="2_ihofj"]
+[ext_resource type="Texture2D" uid="uid://brps0j16cjdxw" path="res://PlayButton.png" id="3_xwboo"]
+[ext_resource type="Texture2D" uid="uid://dkquq7mom4pju" path="res://OptionsButton.png" id="4_074w1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b07fi"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(0, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x6lt7"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(1024, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_x2ps0"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(2048, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rlxw3"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(3072, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5kukc"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(4096, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8ovav"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(5120, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qx8t1"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(6144, 0, 1024, 512)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p42dv"]
-atlas = ExtResource("1_b07fi")
+atlas = ExtResource("2_ihofj")
 region = Rect2(7168, 0, 1024, 512)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hv5cx"]
@@ -67,6 +70,7 @@ animations = [{
 }]
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_787fc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -76,3 +80,21 @@ scale = Vector2(0.913086, 0.913086)
 sprite_frames = SubResource("SpriteFrames_hv5cx")
 autoplay = "default"
 frame_progress = 0.421246
+
+[node name="TextureButton" type="TextureButton" parent="."]
+offset_left = -292.0
+offset_top = 109.0
+offset_right = -121.0
+offset_bottom = 173.0
+texture_normal = ExtResource("3_xwboo")
+stretch_mode = 0
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+offset_left = 110.0
+offset_top = 108.0
+offset_right = 281.0
+offset_bottom = 172.0
+texture_normal = ExtResource("4_074w1")
+stretch_mode = 0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

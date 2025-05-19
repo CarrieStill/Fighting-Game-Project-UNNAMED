@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://dm3von0dunvn8"]
+[gd_scene load_steps=14 format=3 uid="uid://dm3von0dunvn8"]
 
-[ext_resource type="Script" uid="uid://cuy7c8xomhkjc" path="res://fight_scene.gd" id="1_g2itf"]
-[ext_resource type="Script" uid="uid://kps2ltx7fysm" path="res://character_body_2d.gd" id="1_p0kih"]
-[ext_resource type="Texture2D" uid="uid://iej853rchl31" path="res://testguy-Sheet.png" id="2_g2itf"]
-[ext_resource type="Script" uid="uid://dlihya5pjrmcq" path="res://camera_buddy.gd" id="3_i07bt"]
-[ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://camera_2d.gd" id="4_a5tuv"]
-[ext_resource type="Script" uid="uid://c1ldymxcbhsmf" path="res://rich_text_label.gd" id="5_rdelu"]
+[ext_resource type="Script" uid="uid://cuy7c8xomhkjc" path="res://Scripts/fight_scene.gd" id="1_g2itf"]
+[ext_resource type="PackedScene" uid="uid://2rigulmt68fh" path="res://Scenes/PlayerChar.tscn" id="2_i07bt"]
+[ext_resource type="Script" uid="uid://dlihya5pjrmcq" path="res://Scripts/camera_buddy.gd" id="3_i07bt"]
+[ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://Scripts/camera_2d.gd" id="4_a5tuv"]
+[ext_resource type="Script" uid="uid://c1ldymxcbhsmf" path="res://Scripts/rich_text_label.gd" id="5_rdelu"]
 [ext_resource type="Texture2D" uid="uid://dptynnepub61f" path="res://442432.jpg" id="6_3b6xf"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_0e48y"]
@@ -17,41 +16,6 @@ size = Vector2(2421, 263)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epypp"]
 size = Vector2(476, 1127.06)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(35.9069, 60.3591)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_rj586"]
-atlas = ExtResource("2_g2itf")
-region = Rect2(0, 0, 80, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4d7sh"]
-atlas = ExtResource("2_g2itf")
-region = Rect2(80, 0, 80, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ir8iy"]
-atlas = ExtResource("2_g2itf")
-region = Rect2(160, 0, 80, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_hqns4"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rj586")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4d7sh")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_ir8iy")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4d7sh")
-}],
-"loop": true,
-"name": &"IDLE",
-"speed": 5.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdubu"]
 size = Vector2(844, 63.5)
@@ -91,52 +55,16 @@ shape = SubResource("RectangleShape2D_epypp")
 position = Vector2(849, 396)
 shape = SubResource("RectangleShape2D_epypp")
 
-[node name="Player1" type="CharacterBody2D" parent="."]
+[node name="Player1" parent="." instance=ExtResource("2_i07bt")]
 unique_name_in_owner = true
-z_index = 1
-position = Vector2(18, -116)
-scale = Vector2(4.31672, 4.35607)
-script = ExtResource("1_p0kih")
+position = Vector2(746, -113)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player1"]
-position = Vector2(2.89572, 3.32047)
-shape = SubResource("RectangleShape2D_0hol4")
-
-[node name="JumpBufferTimer" type="Timer" parent="Player1"]
-wait_time = 0.2
-one_shot = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player1"]
-position = Vector2(3.01155, -5.05043)
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_hqns4")
-animation = &"IDLE"
-autoplay = "IDLE"
-
-[node name="Player2" type="CharacterBody2D" parent="."]
+[node name="Player2" parent="." instance=ExtResource("2_i07bt")]
 unique_name_in_owner = true
-z_index = 1
-position = Vector2(588, -104)
-scale = Vector2(4.31672, 4.35607)
-script = ExtResource("1_p0kih")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player2"]
-position = Vector2(3.01155, 3.21391)
-shape = SubResource("RectangleShape2D_0hol4")
-
-[node name="JumpBufferTimer" type="Timer" parent="Player2"]
-wait_time = 0.2
-one_shot = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player2"]
-position = Vector2(3.01155, -5.05043)
-scale = Vector2(0.6, 0.6)
-sprite_frames = SubResource("SpriteFrames_hqns4")
-animation = &"IDLE"
-autoplay = "IDLE"
+position = Vector2(1352, -108)
 
 [node name="CameraBuddy" type="CharacterBody2D" parent="."]
-position = Vector2(389, -292)
+position = Vector2(1117, -310)
 script = ExtResource("3_i07bt")
 
 [node name="Camera2D" type="Camera2D" parent="CameraBuddy"]

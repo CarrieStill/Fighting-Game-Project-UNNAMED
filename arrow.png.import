@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bobv3sk66m1s"
-path="res://.godot/imported/_token-editor_token-uploads_undead_skeleton_2024-03-06T00 02 02.752Z.png-50bfc02e0234ee8322fe6bd2e579adf7.ctex"
+uid="uid://dxej7t0bw4y8e"
+path="res://.godot/imported/arrow.png-9a52328c9c8f79a188b7fabb13b1f3fc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_token-editor_token-uploads_undead_skeleton_2024-03-06T00 02 02.752Z.png"
-dest_files=["res://.godot/imported/_token-editor_token-uploads_undead_skeleton_2024-03-06T00 02 02.752Z.png-50bfc02e0234ee8322fe6bd2e579adf7.ctex"]
+source_file="res://arrow.png"
+dest_files=["res://.godot/imported/arrow.png-9a52328c9c8f79a188b7fabb13b1f3fc.ctex"]
 
 [params]
 

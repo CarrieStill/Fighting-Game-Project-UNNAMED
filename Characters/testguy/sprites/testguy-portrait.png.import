@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8oaghdjvcnr2"
-path="res://.godot/imported/faveti.png-3956842367afaee3f812019d8d924d1c.ctex"
+uid="uid://dm577vo6ltgl1"
+path="res://.godot/imported/testguy-portrait.png-21f18da1932dd46b2187f85fe426b92b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://faveti.png"
-dest_files=["res://.godot/imported/faveti.png-3956842367afaee3f812019d8d924d1c.ctex"]
+source_file="res://Characters/testguy/sprites/testguy-portrait.png"
+dest_files=["res://.godot/imported/testguy-portrait.png-21f18da1932dd46b2187f85fe426b92b.ctex"]
 
 [params]
 
