@@ -12,16 +12,16 @@ extends CharacterBody2D
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var testguyAnimations = $AnimatedSprite2D
 @onready var myCharacter: CharacterBody2D = self
-@onready var theirCharacter: CharacterBody2D = $%Player2
+@onready var theirCharacter: CharacterBody2D = self
 enum State{IDLE, WALK, JUMP, DOWN, ATTACK, BLOCK, RECOVERY, STARTUP, LEFT, RIGHT}
 
 var current_state: State = State.IDLE
 var facing_state: State = State.RIGHT
 var jumpDirection = 0
-
-func _ready() -> void:
-	if (name == "Player2"):
-		theirCharacter = $%Player1
+func init(myChar: CharacterBody2D, theirChar: CharacterBody2D) -> void:
+	myCharacter = myChar
+	theirCharacter = theirChar
+	print("My name is " + name)
 
 func _physics_process(delta):
 	get_input()

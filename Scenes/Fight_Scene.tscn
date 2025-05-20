@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dm3von0dunvn8"]
+[gd_scene load_steps=13 format=3 uid="uid://dm3von0dunvn8"]
 
 [ext_resource type="Script" uid="uid://cuy7c8xomhkjc" path="res://Scripts/fight_scene.gd" id="1_g2itf"]
-[ext_resource type="PackedScene" uid="uid://2rigulmt68fh" path="res://Scenes/PlayerChar.tscn" id="2_i07bt"]
 [ext_resource type="Script" uid="uid://dlihya5pjrmcq" path="res://Scripts/camera_buddy.gd" id="3_i07bt"]
 [ext_resource type="Script" uid="uid://b21fskdkkkqry" path="res://Scripts/camera_2d.gd" id="4_a5tuv"]
 [ext_resource type="Script" uid="uid://c1ldymxcbhsmf" path="res://Scripts/rich_text_label.gd" id="5_rdelu"]
@@ -54,14 +53,6 @@ shape = SubResource("RectangleShape2D_epypp")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Walls"]
 position = Vector2(849, 396)
 shape = SubResource("RectangleShape2D_epypp")
-
-[node name="Player1" parent="." instance=ExtResource("2_i07bt")]
-unique_name_in_owner = true
-position = Vector2(746, -113)
-
-[node name="Player2" parent="." instance=ExtResource("2_i07bt")]
-unique_name_in_owner = true
-position = Vector2(1352, -108)
 
 [node name="CameraBuddy" type="CharacterBody2D" parent="."]
 position = Vector2(1117, -310)

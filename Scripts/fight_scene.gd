@@ -1,15 +1,24 @@
 extends Node2D
 
  #needs to handle fight systems
-@onready var Player1: CharacterBody2D = $Player1
-@onready var Player2: CharacterBody2D = $Player2
-
+@export var Player1 = Global.characterP1.instantiate()
+@export var Player2 = Global.characterP2.instantiate()
 
 @onready var CameraBuddy: CharacterBody2D = $CameraBuddy
 @onready var HealthBarP1: ProgressBar = $CameraBuddy/HealthBarP1
 @onready var HealthBarP2: ProgressBar = $CameraBuddy/HealthBarP2
 
 func _ready() -> void:
+	add_child(Player1)
+	add_child(Player2)
+	Player1.name = "Player1"
+	Player2.name = "Player2"
+	Player1.init(Player1, Player2)
+	Player2.init(Player2, Player1)
+	Player1.position.x = 840
+	Player1.position.y = -111
+	Player2.position.x = 1330
+	Player2.position.y = -111
 	HealthBarP1.max_value = Player1.health
 	HealthBarP2.max_value = Player2.health
 	

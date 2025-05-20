@@ -189,10 +189,16 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="Player1" type="CharacterBody2D"]
+[node name="testguy" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(4.31672, 4.35607)
 script = ExtResource("1_sii85")
+speed = null
+acceleration = null
+down_gravity_factor = null
+jump_speed = null
+playerInputs = null
+health = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2.89572, 3.32047)
