@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var selection = 0
-@export var charList = ["testguy", "testguy"]
+@export var charList = ["testguy", "fakeguy"]
 @export var ArrowLoc = [-369, -120]
 @onready var SelectArrow: Sprite2D = $SelectArrow
 
@@ -20,6 +20,7 @@ func _input(event: InputEvent) -> void:
 		selection = min(selection + 1, charList.size()-1)
 		return
 	if event.is_action_pressed("ui_select"):
-		Global.loadCharacter(charList[selection])
+		Global.loadCharacter1(charList[selection])
+		Global.loadCharacter2(charList[0]) 
 		get_tree().change_scene_to_file("res://Scenes/Fight_Scene.tscn")
 		return

@@ -19,6 +19,7 @@ func _ready() -> void:
 	Player1.position.y = -111
 	Player2.position.x = 1330
 	Player2.position.y = -111
+	CameraBuddy.set_players(Player1, Player2)
 	HealthBarP1.max_value = Player1.health
 	HealthBarP2.max_value = Player2.health
 	

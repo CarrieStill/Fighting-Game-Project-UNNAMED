@@ -7,9 +7,12 @@ extends CharacterBody2D
 
 
 func _physics_process(delta):
-	#update_movement(delta)
+	update_movement(delta)
 	move_and_slide()
-	
+
+func set_players(P1: CharacterBody2D, P2: CharacterBody2D):
+	Player1 = P1
+	Player2 = P2
 func update_movement(_delta: float) -> void:
 	targetPos = (Player1.position.x + Player2.position.x)/2
 	toTarget = targetPos - position.x
