@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dm3von0dunvn8"]
+[gd_scene load_steps=14 format=3 uid="uid://dm3von0dunvn8"]
 
 [ext_resource type="Script" uid="uid://cuy7c8xomhkjc" path="res://Scripts/fight_scene.gd" id="1_g2itf"]
 [ext_resource type="Script" uid="uid://dlihya5pjrmcq" path="res://Scripts/camera_buddy.gd" id="3_i07bt"]
@@ -25,10 +25,15 @@ bg_color = Color(0.783523, 0.783523, 0.783523, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i07bt"]
 bg_color = Color(0.933327, 3.27289e-06, 9.62615e-07, 1)
 
+[sub_resource type="Theme" id="Theme_kohi0"]
+RichTextLabel/constants/outline_size = 3
+RichTextLabel/font_sizes/normal_font_size = 25
+
 [node name="FightScene" type="Node2D"]
 script = ExtResource("1_g2itf")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
+z_index = -1
 position = Vector2(1672, -66)
 physics_material_override = SubResource("PhysicsMaterial_0e48y")
 
@@ -43,6 +48,7 @@ position = Vector2(-589.5, 240)
 shape = SubResource("RectangleShape2D_q6r6c")
 
 [node name="Walls" type="StaticBody2D" parent="."]
+z_index = -1
 position = Vector2(1618, -823)
 physics_material_override = SubResource("PhysicsMaterial_0e48y")
 
@@ -94,6 +100,25 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_i07bt")
 value = 40.0
 fill_mode = 1
 show_percentage = false
+
+[node name="Player1Name" type="RichTextLabel" parent="CameraBuddy"]
+offset_left = -417.0
+offset_top = -221.0
+offset_right = -100.0
+offset_bottom = -181.0
+theme = SubResource("Theme_kohi0")
+text = "Player1
+"
+horizontal_alignment = 2
+
+[node name="Player2Name" type="RichTextLabel" parent="CameraBuddy"]
+offset_left = 122.0
+offset_top = -215.0
+offset_right = 439.0
+offset_bottom = -175.0
+theme = SubResource("Theme_kohi0")
+text = "Player2
+"
 
 [node name="Background" type="Sprite2D" parent="."]
 z_index = -2

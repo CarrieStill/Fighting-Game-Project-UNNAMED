@@ -1,11 +1,11 @@
-[gd_scene load_steps=25 format=3 uid="uid://d1fpdp1b1urrq"]
+[gd_scene load_steps=28 format=3 uid="uid://d1fpdp1b1urrq"]
 
-[ext_resource type="Script" uid="uid://kps2ltx7fysm" path="res://Scripts/playerScript.gd" id="1_7epd4"]
+[ext_resource type="Script" uid="uid://b4uww6ikkctf5" path="res://Scripts/fakeguy_script.gd" id="1_7epd4"]
 [ext_resource type="Texture2D" uid="uid://dmo1dwfqi8uh5" path="res://Characters/fakeguy/sprites/fakeguy-walk.png" id="2_7epd4"]
 [ext_resource type="Texture2D" uid="uid://b1l85dtfe0jkg" path="res://Characters/fakeguy/sprites/FakeGuy-IDLE.png" id="2_yet1g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0hol4"]
-size = Vector2(35.9069, 60.3591)
+size = Vector2(22.9336, 5.95209)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tgij7"]
 atlas = ExtResource("2_7epd4")
@@ -161,14 +161,26 @@ animations = [{
 "speed": 8.0
 }]
 
-[node name="testguy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7epd4"]
+size = Vector2(87.1518, 12.7999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhnxc"]
+size = Vector2(69.0169, 7.91782)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aubli"]
+size = Vector2(11.1244, 26.2991)
+
+[node name="faekguy" type="CharacterBody2D"]
 z_index = 1
 scale = Vector2(4.31672, 4.35607)
 script = ExtResource("1_7epd4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(2.89572, 3.32047)
+position = Vector2(3.35964, 30.5232)
+rotation = 3.13979
+scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_0hol4")
+one_way_collision = true
 
 [node name="JumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.2
@@ -180,3 +192,19 @@ scale = Vector2(0.14551, 0.151754)
 sprite_frames = SubResource("SpriteFrames_i32mf")
 animation = &"WALK"
 autoplay = "IDLE"
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(3.16788, -3.57778)
+scale = Vector2(0.157757, 1.44967)
+shape = SubResource("RectangleShape2D_7epd4")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(4.28566, -18.3652)
+scale = Vector2(0.157757, 1.44967)
+shape = SubResource("RectangleShape2D_vhnxc")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(3.24078, 19.2191)
+shape = SubResource("RectangleShape2D_aubli")

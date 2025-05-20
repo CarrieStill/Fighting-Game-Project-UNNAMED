@@ -7,10 +7,12 @@ extends CharacterBody2D
 @export var jump_speed: int = -350 * 3
 @export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1"]
 @export var health: int = 1000
+@export var characterName = "Test Guy"
 
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
 @onready var testguyAnimations = $AnimatedSprite2D
+@onready var Hitbox: Area2D = $Hitbox
 @onready var myCharacter: CharacterBody2D = self
 @onready var theirCharacter: CharacterBody2D = self
 enum State{IDLE, WALK, JUMP, DOWN, ATTACK, BLOCK, RECOVERY, STARTUP, LEFT, RIGHT}
@@ -21,7 +23,6 @@ var jumpDirection = 0
 func init(myChar: CharacterBody2D, theirChar: CharacterBody2D) -> void:
 	myCharacter = myChar
 	theirCharacter = theirChar
-	print("My name is " + name)
 
 func _physics_process(delta):
 	get_input()
@@ -50,11 +51,16 @@ func get_input():
 	#Horizontal Movement Control
 	if !is_on_floor():
 		#do nothing
-		velocity.x
+		velocity
+	elif Hitbox.has_overlapping_areas():
+		if facing_state == State.LEFT:
+			velocity.x = speed
+		else:
+			velocity.x = -speed
 	elif direction == 0:
 		velocity.x = move_toward(velocity.x, 0, acceleration)
 	else:
-		velocity.x = speed*direction
+		velocity.x = move_toward(velocity.x, speed*direction, acceleration)
 	
 func update_movement(delta: float) -> void:
 	if (is_on_floor()) && jump_buffer_timer.time_left > 0:
