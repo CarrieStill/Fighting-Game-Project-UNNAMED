@@ -5,17 +5,18 @@ extends CharacterBody2D
 @export var gravity: int = speed * 5
 @export var down_gravity_factor: float = 3
 @export var jump_speed: int = -350 * 3
-@export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1"]
+@export var playerInputs: Array = ["upP1", "downP1", "leftP1", "rightP1", "punchP1"]
 @export var health: int = 1000
 @export var characterName = "Test Guy"
 
 
 @onready var jump_buffer_timer: Timer = $JumpBufferTimer
+@onready var attack_timer: Timer = $AttackTimer
 @onready var testguyAnimations = $AnimatedSprite2D
 @onready var Hitbox: Area2D = $Hitbox
 @onready var myCharacter: CharacterBody2D = self
 @onready var theirCharacter: CharacterBody2D = self
-enum State{IDLE, WALK, JUMP, DOWN, ATTACK, BLOCK, RECOVERY, STARTUP, LEFT, RIGHT}
+enum State{IDLE, WALK, BACKWALK, JUMP, DOWN, ATTACK, BLOCK, RECOVERY, STARTUP, LEFT, RIGHT}
 
 var current_state: State = State.IDLE
 var facing_state: State = State.RIGHT
@@ -34,9 +35,12 @@ func _physics_process(delta):
 	
 func get_input():
 	if(name == "Player2"):
-		playerInputs = ["upP2", "downP2", "leftP2", "rightP2"]
+		playerInputs = ["upP2", "downP2", "leftP2", "rightP2", "punchP2"]
 		
-	if (Input.is_action_just_pressed(playerInputs[0])):
+	if Input.is_action_just_pressed(playerInputs[4]):
+		if is_on_floor():
+			punch()
+	elif (Input.is_action_just_pressed(playerInputs[0])):
 		
 		if(Input.is_action_pressed(playerInputs[2])):
 			jumpDirection = -1
@@ -49,7 +53,7 @@ func get_input():
 
 	var direction = Input.get_axis(playerInputs[2], playerInputs[3])
 	#Horizontal Movement Control
-	if !is_on_floor():
+	if !is_on_floor() || !attack_timer.is_stopped():
 		#do nothing
 		velocity
 	elif Hitbox.has_overlapping_areas():
@@ -58,7 +62,9 @@ func get_input():
 		else:
 			velocity.x = -speed
 	elif direction == 0:
-		velocity.x = move_toward(velocity.x, 0, acceleration)
+		velocity.x = 0#move_toward(velocity.x, 0, acceleration)
+		current_state = State.IDLE
+		testguyAnimations.play("IDLE")
 	else:
 		velocity.x = move_toward(velocity.x, speed*direction, acceleration)
 	
@@ -94,13 +100,15 @@ func update_states() -> void:
 			
 			
 		State.WALK:
-			if velocity.x == 0:
-				current_state = State.IDLE
-				testguyAnimations.play("IDLE")
-				if not is_on_floor() && velocity.y > 0:
-					current_state = State.DOWN
+			if velocity.x == 0 :
+				current_state# = State.IDLE
+				#testguyAnimations.play("IDLE")
 			else:
 				get_walk()
+				
+		State.BACKWALK:
+			if velocity.x > 0:
+				current_state = State.IDLE
 				
 		State.JUMP when velocity.y > 0:
 			current_state = State.DOWN
@@ -112,6 +120,10 @@ func update_states() -> void:
 			else:
 				get_walk()
 				current_state = State.WALK
+		State.ATTACK:
+			if attack_timer.is_stopped():
+				current_state = State.IDLE
+				testguyAnimations.play("IDLE")
 
 #Update the direction that players are facing, keeps them facing each other.
 func update_direction() -> void:
@@ -125,3 +137,10 @@ func update_direction() -> void:
 		testguyAnimations.flip_h = 1
 	else:
 		testguyAnimations.flip_h = 0
+
+#Attacks
+func punch():
+	current_state = State.ATTACK
+	velocity.x = 0
+	testguyAnimations.play("JAB")
+	attack_timer.start()
